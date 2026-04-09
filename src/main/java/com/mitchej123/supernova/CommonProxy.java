@@ -6,6 +6,7 @@ import com.mitchej123.supernova.config.BlockColorConfig;
 import com.mitchej123.supernova.config.BlockTranslucencyConfig;
 import com.mitchej123.supernova.config.DefaultColors;
 import com.mitchej123.supernova.config.DefaultTranslucency;
+import com.mitchej123.supernova.core.SupernovaCore;
 import com.mitchej123.supernova.light.LightRegistryDiagnostics;
 import com.mitchej123.supernova.light.engine.FaceOcclusion;
 import com.mitchej123.supernova.storage.SupernovaDataManager;
@@ -30,8 +31,10 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-        SupernovaDataManager.register();
-        SupernovaSkyDataManager.register();
+        if (SupernovaCore.CHUNKAPI_PRESENT) {
+            SupernovaDataManager.register();
+            SupernovaSkyDataManager.register();
+        }
         DefaultColors.register();
         DefaultTranslucency.register();
         MinecraftForge.EVENT_BUS.register(this);

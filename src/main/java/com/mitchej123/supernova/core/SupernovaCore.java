@@ -19,11 +19,21 @@ public class SupernovaCore implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     private static final Logger LOG = LogManager.getLogger("supernova");
 
+    public static final boolean CHUNKAPI_PRESENT;
+
     static {
         try {
             ConfigurationManager.registerConfig(SupernovaConfig.class);
         } catch (ConfigException e) {
             throw new RuntimeException("Failed to register Supernova config", e);
+        }
+
+        CHUNKAPI_PRESENT = SupernovaCore.class.getClassLoader().getResource("com/falsepattern/chunk/api/DataRegistry.class") != null;
+
+        if (!CHUNKAPI_PRESENT && !SupernovaConfig.isScalarMode()) {
+            LOG.warn("ChunkAPI not found -- forcing SCALAR mode (RGB requires ChunkAPI for persistence)");
+            SupernovaConfig.lightingMode = SupernovaConfig.LightingMode.SCALAR;
+            ConfigurationManager.save(SupernovaConfig.class);
         }
 
         if (SupernovaConfig.isScalarMode()) {

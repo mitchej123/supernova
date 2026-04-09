@@ -4,7 +4,7 @@
     {
       "modid": "${modId}",
       "name": "${modName}",
-      "description": "RGB colored lighting engine for Minecraft 1.7.10, based on Starlight.",
+      "description": "Async lighting engine for Minecraft 1.7.10, based on Starlight - with optional RGB colored lighting.",
       "version": "${modVersion}",
       "mcversion": "${minecraftVersion}",
       "url": "",
@@ -16,13 +16,10 @@
       "logoFile": "",
       "screenshots": [],
       "parent": "",
-      "requiredMods": [
-        "chunkapi@[0.8.1,)",
-        "hodgepodge@[2.7.107,)"
-      ],
+      "requiredMods": [],
       "dependencies": [],
       "dependants": [],
-      "useDependencyInformation": true
+      "useDependencyInformation": false
     }
   ]
 }

@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(
-        modid = Supernova.MODID, version = Tags.VERSION, name = "Supernova", acceptedMinecraftVersions = "[1.7.10]", dependencies = "required-after:chunkapi@[0.8.1,);required-after:hodgepodge@[2.7.107,);after:angelica@[2.1.6,)")
+        modid = Supernova.MODID, version = Tags.VERSION, name = "Supernova", acceptedMinecraftVersions = "[1.7.10]", dependencies = "after:chunkapi@[0.8.1,);required-after:hodgepodge@[2.7.107,);after:angelica@[2.1.6,)")
 public class Supernova {
 
     public static final String MODID = "supernova";

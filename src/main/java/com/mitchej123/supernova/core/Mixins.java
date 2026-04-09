@@ -2,6 +2,7 @@ package com.mitchej123.supernova.core;
 
 import com.gtnewhorizon.gtnhmixins.builders.IMixins;
 import com.gtnewhorizon.gtnhmixins.builders.MixinBuilder;
+import com.mitchej123.supernova.config.SupernovaConfig;
 
 import javax.annotation.Nonnull;
 
@@ -21,11 +22,13 @@ public enum Mixins implements IMixins {
     VANILLA_RENDERING(new MixinBuilder("Vanilla colored light rendering").
             addClientMixins("early.rendering.MixinRenderBlocks")
             .addExcludedMod(TargetedMod.ANGELICA)
+            .setApplyIf(() -> !SupernovaConfig.isScalarMode())
             .setPhase(Phase.EARLY)
     ),
 
     ENTITY_RENDERING(new MixinBuilder("Entity colored light rendering")
             .addClientMixins("early.rendering.MixinRenderManager")
+            .setApplyIf(() -> !SupernovaConfig.isScalarMode())
             .setPhase(Phase.EARLY)
     );
 

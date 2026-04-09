@@ -5,6 +5,7 @@ import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import com.mitchej123.supernova.client.TintBlendMode;
 import com.mitchej123.supernova.compat.angelica.AngelicaCompat;
 import com.mitchej123.supernova.config.SupernovaClientConfig;
+import com.mitchej123.supernova.config.SupernovaConfig;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -46,7 +47,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerKeyBinding(tintModeKeyBinding);
         FMLCommonHandler.instance().bus().register(this);
 
-        angelicaLoaded = Loader.isModLoaded("angelica");
+        angelicaLoaded = Loader.isModLoaded("angelica") && !SupernovaConfig.isScalarMode();
         if (angelicaLoaded) {
             AngelicaCompat.register();
         }

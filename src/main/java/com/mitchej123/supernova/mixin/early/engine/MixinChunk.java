@@ -1,6 +1,7 @@
 package com.mitchej123.supernova.mixin.early.engine;
 
 import com.mitchej123.supernova.config.SupernovaConfig;
+import com.mitchej123.supernova.core.SupernovaCore;
 import com.mitchej123.supernova.light.ChunkLightHelper;
 import com.mitchej123.supernova.light.SWMRNibbleArray;
 import com.mitchej123.supernova.light.SupernovaChunk;
@@ -84,6 +85,10 @@ public abstract class MixinChunk implements SupernovaChunk {
     // Import vanilla light data and trigger block engine for chunks without saved RGB data.
     @Inject(method = "onChunkLoad", at = @At("HEAD"))
     private void supernova$onChunkLoad(CallbackInfo ci) {
+        if (!SupernovaCore.CHUNKAPI_PRESENT && this.isLightPopulated) {
+            ChunkLightHelper.importVanillaBlock(this.supernova$blockNibblesR, null, null, this.storageArrays);
+        }
+
         final boolean hasBlockData = ChunkLightHelper.hasSavedBlockData(this.supernova$blockNibblesR, this.storageArrays);
 
         if (this.worldObj != null) {
