@@ -15,6 +15,15 @@ public final class SupernovaConfig {
     @Config.RequiresMcRestart
     public static LightingMode lightingMode;
 
+    @Config.Comment("Scale registered block colors so their max channel matches the block's vanilla lightValue.")
+    @Config.DefaultBoolean(true)
+    @Config.RequiresMcRestart
+    public static boolean scaleEmissionToVanillaLight;
+
+    @Config.Comment("Write light engine instrumentation to logs/supernova-stats.log. Diagnostic only; the file grows without bound while enabled.")
+    @Config.DefaultBoolean(false)
+    public static boolean enableStatsLog;
+
     public static boolean isScalarMode() {
         return lightingMode == LightingMode.SCALAR;
     }
